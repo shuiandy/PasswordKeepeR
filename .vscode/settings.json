@@ -1,0 +1,14 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 5432,
+      "driver": "PostgreSQL",
+      "name": "passwordkeeper",
+      "database": "midterm",
+      "username": "labber",
+      "password": "labber"
+    }
+  ]
+}
