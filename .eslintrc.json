@@ -1,11 +1,12 @@
 {
+  "root": true,
   "env": {
     "commonjs": true,
     "es6": true,
     "node": true,
     "mocha": true
   },
-  "extends": "eslint:recommended",
+  "extends": ["plugin:node/recommended"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -14,37 +15,27 @@
     "ecmaVersion": 2018
   },
   "rules": {
-    "indent": [
-      "error",
-      2
-    ],
-    "linebreak-style": [
-      "error",
-      "unix"
-    ],
-    "semi": [
-      "error",
-      "always"
-    ],
-    "no-var": "error",
-    "no-console": "off",
+    "indent": ["error", 2],
     "no-unused-vars": "warn",
-    "func-call-spacing": [
-      "error",
-      "never"
-    ],
+    "no-console": "off",
+    "func-names": ["error", "never"],
+    "no-process-exit": "off",
+    "object-shorthand": "off",
+    "no-var": "error",
+    "linebreak-style": ["error", "unix"],
+    "semi": ["error", "always"],
+    "class-methods-use-this": "off",
+    "quotes": "off",
+    "eqeqeq": "error",
+    "brace-style": "error",
+    "camelcase": "error",
     "space-before-blocks": "error",
     "keyword-spacing": "error",
     "no-trailing-spaces": ["error", { "skipBlankLines": true }],
     "semi-spacing": "error",
+    "space-before-function-paren": [ "warn", { "anonymous": "never", "named": "never", "asyncArrow": "never" } ],
     "func-style": ["error", "expression"],
     "space-infix-ops": "error",
-    "space-in-parens": "error",
-    "camelcase": "error",
-    "eqeqeq": "error",
-    "brace-style": "error",
-    "space-before-function-paren": [ "warn", { "anonymous": "never", "named": "never", "asyncArrow": "never" } ],
-    "func-names": ["error", "never"],
-    "quotes": "off"
+    "space-in-parens": "error"
   }
 }
