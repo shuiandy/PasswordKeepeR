@@ -5,7 +5,6 @@ const passwordGenerator = (passLength) => {
     const randomNumber = Math.floor(Math.random() * chars.length);
     password += chars.substring(randomNumber, randomNumber + 1);
   }
-  console.log(password);
 };
 
 const copyPassword = () => {
