@@ -1,0 +1,53 @@
+#unlocked-app #vault-content
+  #item-list
+    overflow: auto
+    top: 70px
+    bottom: 0
+    position: fixed
+    box-shadow: inset -1px 0 0 #e4e6e7
+    left: 200px
+    width: 250px
+
+    @media only screen and(min-width: 1050px)
+      left: 235px
+      width: 300px
+
+  #item-details
+    position: absolute
+    top: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    bottom: 48px
+    right: 0
+    overflow: auto
+    padding: 0.5rem 8rem
+    border-left: 1px solid #e4e6e7
+    width: calc(100% - 450px)
+
+    @media only screen and(min-width: 1050px)
+      width: calc(100% - 535px)
+
+    table
+      width: 100%
+      border: transparent
+      table-layout: fixed
+      margin: 2rem 0
+
+    tbody
+      margin: 0
+      padding: 0
+      border: 0
+      font: inherit
+      vertical-align: baseline
+
+    .first-col
+      text-align: right
+      padding-right: 1rem
+      color: #707070
+      width: 150px
+      position: relative
+
+    .value-input
+      // outline: none;
+      border: none
