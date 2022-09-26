@@ -1,0 +1,24 @@
+DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS organizations CASCADE;
+DROP TABLE IF EXISTS vaults CASCADE;
+CREATE TABLE vaults (
+  id SERIAL PRIMARY KEY NOT NULL,
+  item_name VARCHAR(255),
+  website VARCHAR(255),
+  username VARCHAR(255),
+  password VARCHAR(255),
+  last_modified_time DATE NOT NULL,
+  create_time DATE NOT NULL
+);
+CREATE TABLE organizations (
+  id SERIAL PRIMARY KEY NOT NULL,
+  org_name VARCHAR(255) NOT NULL,
+  vault_id INTEGER REFERENCES vaults(id) ON DELETE CASCADE
+);
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  org_id INTEGER REFERENCES organizations(id) ON DELETE CASCADE
+);
