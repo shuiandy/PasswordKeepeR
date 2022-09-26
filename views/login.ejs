@@ -77,18 +77,22 @@
         </div>
         <div class="form-signup">
           <form action="/signup" class="form-signup" method="POST">
-            <input type="text" id="user-name" class="form-control" placeholder="Full name" required="" autofocus="">
-            <input type="email" id="user-email" class="form-control" placeholder="Email address" required autofocus="">
-            <input type="password" id="user-pass" class="form-control" placeholder="Password" required autofocus="">
+            <input type="text" id="user-name" name="username" class="form-control" placeholder="Full name" required=""
+              autofocus="">
+            <input type="email" id="user-email" name="userEmail" class="form-control" placeholder="Email address"
+              required autofocus="">
+            <input type="password" id="user-pass" name="userPass" class="form-control" placeholder="Password" required
+              autofocus="">
             <input type="password" id="user-repeatpass" class="form-control" placeholder="Repeat Password" required
               autofocus="">
-            <input type="text" id="user-organization" class="form-control" placeholder="Organization" required
+            <input type="text" id="user-org" name="orgName" class="form-control" placeholder="Organization" required
               autofocus="">
-            <input type="password" id="organization-pass" class="form-control" placeholder="Organization Password"
+            <input type="password" id="org-pass" name="orgPass" class="form-control" placeholder="Organization Password"
               required autofocus="">
-
-            <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
-            <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Login</a>
+            <div class="signup_container">
+              <a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i> Login</a>
+              <button class="btn btn-primary btn-block" id="signup-button" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+            </div>
           </form>
         </div>
       </div>

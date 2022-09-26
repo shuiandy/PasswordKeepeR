@@ -8,9 +8,9 @@
 const express = require('express');
 const router = express.Router();
 const { checkLoginStatus } = require('../lib/helper');
-router.get('/', (req, res) => {
-  res.render('users');
-});
+// router.get('/', (req, res) => {
+//   res.render('login');
+// });
 
 router.get('/users', (req, res) => {
   if (checkLoginStatus(req.session)) {
@@ -19,7 +19,7 @@ router.get('/users', (req, res) => {
 });
 
 router.post('/new', (req, res) => {
-  
+
 })
 
 module.exports = router;
