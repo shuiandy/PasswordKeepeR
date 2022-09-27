@@ -20,7 +20,7 @@
   <!-- Font Family -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Noto+Sans&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
@@ -97,69 +97,73 @@
       <div id="item-list"></div>
       <div id="item-details">
         <div class="new-item">
-          <table class="section-username-password">
-            <tbody>
-              <tr class="field string">
-                <td class="title first-col">
-                  <span class="section-name">username</span>
-                </td>
-                <td class="value string">
-                  <input autocapitalize="none" autocorrect="off" class="value-input" placeholder="new field" type="text"
-                    value></input>
-                </td>
-              </tr>
-              <tr class="field concealed">
-                <td class="title first-col">
-                  <span class="section-name">password</span>
-                </td>
-                <td class="value concealed show-password-generator">
-                  <input type="text" class="value-input" spellcheck="false" autocapitalize="none" autocorrect="off"
-                    value>
-                  <button class="generate-password">
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="section-websites">
-            <tbody>
-              <tr class="field URL new-field">
-                <td class="title first-col">
-                  <span class="section-name">website</span>
-                </td>
-                <td class="value URL">
+          <form action="/api/new-item" method="POST">
+            <table class="section-itemName">
+              <tbody>
+                <tr class="field string">
+                  <td class="title first-col">
+                    <span class="section-name">New item Name</span>
+                  </td>
+                  <td class="value string">
+                    <input autocapitalize="none" autocorrect="off" class="value-input" placeholder="new field"
+                      type="text" name="itemName" value></input>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="section-username-password">
+              <tbody>
+                <tr class="field string">
+                  <td class="title first-col">
+                    <span class="section-name">username</span>
+                  </td>
+                  <td class="value string">
+                    <input autocapitalize="none" autocorrect="off" class="value-input" placeholder="new field"
+                      type="text" name="username" value></input>
+                  </td>
+                </tr>
+                <tr class="field concealed">
+                  <td class="title first-col">
+                    <span class="section-name">password</span>
+                  </td>
+                  <td class="value concealed show-password-generator">
+                    <input type="text" class="value-input" spellcheck="false" autocapitalize="none" autocorrect="off"
+                      name="password" value>
+                    <button class="generate-password">
+
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="section-websites">
+              <tbody>
+                <tr class="field URL new-field">
+                  <td class="title first-col">
+                    <span class="section-name">website</span>
+                  </td>
+                  <td class="value URL">
+                    <input type="text" class="value-input" autocapitalize="none" autocorrect="off"
+                      placeholder="web address" name="website" value>
+                  </td>
+                </tr>
+                <tr class="field string new-field ">
+                  <td class="title first-col">
+                    <span class="section-name">category</span>
+                  </td>
+                  <td class="category">
                   <input type="text" class="value-input" autocapitalize="none" autocorrect="off"
-                    placeholder="web address" value>
-                </td>
-              </tr>
-              <tr class="field string new-field ">
-                <td class="title first-col">
-                  <span class="section-name">category</span>
-                </td>
-                <td class="dropdown-menu">
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="section-modify-date">
-            <tbody>
-              <tr class="field URL new-field">
-                <td class="title first-col">
-                  <span class="section-name">last modified</span>
-                </td>
-                <td id="last-modified"></td>
-              </tr>
-              <tr class="field string new-field ">
-                <td class="title first-col">
-                  <span class="section-name">created</span>
-                </td>
-                <td id="created-date"></td>
-              </tr>
-            </tbody>
-          </table>
+                    placeholder="category" name="category" value>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
       </div>
     </section>
+  </div>
 </body>
 
 </html>

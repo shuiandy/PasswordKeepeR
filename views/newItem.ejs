@@ -36,48 +36,64 @@
 </head>
 
 <div class="new-item">
-  <table class="section-username-password">
-    <tbody>
-      <tr class="field string">
-        <td class="title first-col">
-          <span class="section-name">username</span>
+  <form action="/api/new-item" method="POST">
+    <table class="section-itemName">
+      <tbody>
+        <tr class="field string">
+          <td class="title first-col">
+            <span class="section-name">New item Name</span>
           </td>
           <td class="value string">
-            <input autocapitalize="none" autocorrect="off" class="value-input" placeholder="new field" type="text"
+            <input autocapitalize="none" autocorrect="off" class="value-input" placeholder="new field" type="text" name="itemName"
               value></input>
-            </td>
-      </tr>
-      <tr class="field concealed">
-        <td class="title first-col">
-          <span class="section-name">password</span>
-        </td>
-        <td class="value concealed show-password-generator">
-          <input type="text" class="value-input" spellcheck="false" autocapitalize="none" autocorrect="off" value>
-          <button class="generate-password">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="section-username-password">
+      <tbody>
+        <tr class="field string">
+          <td class="title first-col">
+            <span class="section-name">username</span>
+          </td>
+          <td class="value string">
+            <input autocapitalize="none" autocorrect="off" class="value-input" placeholder="new field" type="text" name="username"
+              value></input>
+          </td>
+        </tr>
+        <tr class="field concealed">
+          <td class="title first-col">
+            <span class="section-name">password</span>
+          </td>
+          <td class="value concealed show-password-generator">
+            <input type="text" class="value-input" spellcheck="false" autocapitalize="none" autocorrect="off" name="password" value>
+            <button class="generate-password">
 
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <table class="section-websites">
-    <tbody>
-      <tr class="field URL new-field">
-        <td class="title first-col">
-          <span class="section-name">website</span>
-        </td>
-        <td class="value URL">
-          <input type="text" class="value-input" autocapitalize="none" autocorrect="off" placeholder="web address"
-            value>
-        </td>
-      </tr>
-      <tr class="field string new-field ">
-        <td class="title first-col">
-          <span class="section-name">category</span>
-        </td>
-        <td class="dropdown-menu">
-        </td>
-      </tr>
-    </tbody>
-  </table>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="section-websites">
+      <tbody>
+        <tr class="field URL new-field">
+          <td class="title first-col">
+            <span class="section-name">website</span>
+          </td>
+          <td class="value URL">
+            <input type="text" class="value-input" autocapitalize="none" autocorrect="off" placeholder="web address" name="website"
+              value>
+          </td>
+        </tr>
+        <tr class="field string new-field ">
+          <td class="title first-col">
+            <span class="section-name">category</span>
+          </td>
+          <td class="dropdown-menu" name="category">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
 </div>
