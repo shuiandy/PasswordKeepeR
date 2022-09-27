@@ -9,5 +9,4 @@ const checkLoginStatus = (session) => {
 
 module.exports = {
   checkLoginStatus,
-  timeConverter,
 };

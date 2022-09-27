@@ -47,7 +47,7 @@
             <img src="resources/avatar.png" class="user_avatar">
             <button id="userMenuContainer" class="menuButtonRight space-clickable" aria-expanded="false"
               aria-label="User Menu">
-              Andy Hu
+              <%= org %>
             </button>
             <span class="fa fa-solid fa-chevron-down fa-xs"></span>
           </div>
@@ -94,7 +94,19 @@
         <!-- List Group END-->
       </nav>
       <!-- Sidebar End -->
-      <div id="item-list"></div>
+      <div id="item-list">
+        <ul id="items-ul">
+          <% for (let item in vault) {%>
+            <li class="items">
+              <button class="list-item">
+                <h4 class="title">
+                  <%= vault[item].item_name %>
+                </h4>
+              </button>
+            </li>
+            <% }%>
+        </ul>
+      </div>
       <div id="item-details">
         <div class="new-item">
           <form action="/api/new-item" method="POST">
@@ -152,8 +164,8 @@
                     <span class="section-name">category</span>
                   </td>
                   <td class="category">
-                  <input type="text" class="value-input" autocapitalize="none" autocorrect="off"
-                    placeholder="category" name="category" value>
+                    <input type="text" class="value-input" autocapitalize="none" autocorrect="off"
+                      placeholder="category" name="category" value>
                   </td>
                 </tr>
               </tbody>

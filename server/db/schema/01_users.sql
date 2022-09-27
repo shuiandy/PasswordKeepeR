@@ -33,3 +33,5 @@ FROM users
 WHERE users.username = 'haha'
 GROUP BY users.id,
   organizations.id;
+
+UPDATE organizations SET vault=vault #- '{"haha"}' WHERE id = 1;
