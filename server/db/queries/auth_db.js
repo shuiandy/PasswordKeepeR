@@ -62,7 +62,7 @@ const userLogin = (username, password) => {
   const queryString = 'SELECT * FROM users WHERE username = $1';
   return new Promise((resolve) => {
     db.query(queryString, [username]).then((result) => {
-      if (!result.rows || !bcrypt.compareSync(password, result.rows[0].password)) {
+      if (!result.rows[0] || !bcrypt.compareSync(password, result.rows[0].password)) {
         return resolve({ user_id: null, success: false, info: 'Invalid Username or Password!' });
       } else {
         const getUserInfoString =
@@ -75,10 +75,12 @@ const userLogin = (username, password) => {
             org_name: data.rows[0].org_name,
             org_id: data.rows[0].org_id,
           };
-          db.query(`SELECT * FROM ${result.org_name}`).then((data) => {
-            result.vault = data.rows[0];
-            return resolve(result);
-          });
+          //refactor query to organization from organization table
+          // db.query(`SELECT * FROM ${result.org_name}`).then((data) => {
+          //   result.vault = data.rows[0];
+          //   return resolve(result);
+          // });
+          return resolve(result);
         });
       }
     });

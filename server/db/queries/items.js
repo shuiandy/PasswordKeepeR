@@ -30,9 +30,10 @@ const deleteItem = (itemName, org_name) => {
 
 const getVault = (org_name) => {
   return new Promise((resolve) => {
-    db.query(`SELECT * FROM ${org_name}`).then((vault) => {
-      return resolve({ vault: vault.rows });
-    });
+    // db.query(`SELECT * FROM ${org_name}`).then((vault) => {
+    //   return resolve({ vault: vault.rows });
+    // });
+    return resolve({vault: []})
   });
 };
 module.exports = { insertNewItem, editItem, deleteItem, getVault };
