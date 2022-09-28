@@ -42,26 +42,28 @@
       <div class="container-fluid">
         <img src="resources/logo.png" class="logo">
         <a class="navbar-brand" id="navbar-brand" href="#">PasswordKeepeR</a>
-        <!-- <div class="user-menu" id="user-menu">
+        <div class="user-menu" id="user-menu">
           <div class="user-menu-group">
             <img src="resources/avatar.png" class="user_avatar">
-            <button id="userMenuContainer" class="menuButtonRight space-clickable" aria-expanded="false"
-              aria-label="User Menu">
-              <%= org %>
-            </button>
-            <span class="fa fa-solid fa-chevron-down fa-xs"></span>
-          </div>
-        </div> -->
-        <div class="dropdown" id="user-menu">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= org %>
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Log Out</a>
+            <!-- <button id="userMenuContainer" class="menuButtonRight space-clickable" aria-expanded="false" -->
+            <!-- aria-label="User Menu"> -->
+            <!-- <%= vault.org_name %> -->
+            <!-- </button> -->
+            <!-- <span class="fa fa-solid fa-chevron-down fa-xs"></span> -->
+            <div class="dropdown" id="dropdown-menu">
+              <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <%= vault.org_name %>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Log Out</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
     <!-- NavBar End -->
     <section id="vault-content">
 
@@ -104,11 +106,11 @@
       <!-- Sidebar End -->
       <div id="item-list">
         <ul id="items-ul">
-          <% for (let item in vault) {%>
+          <% for (let item in vault.vault) {%>
             <li class="items">
               <button class="list-item">
                 <h4 class="title">
-                  <%= vault[item].item_name %>
+                  <%= vault.vault[item].item %>
                 </h4>
               </button>
             </li>

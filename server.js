@@ -4,6 +4,7 @@ require('dotenv').config();
 const sassMiddleware = require('./server/lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const methodOverride = require('method-override');
 const path = require('path');
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -15,6 +16,7 @@ app.set('view engine', 'ejs');
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 app.use(
   '/styles',
   sassMiddleware({
@@ -29,13 +31,18 @@ app.use(express.static('public'));
 // Note: Feel free to replace the example routes below with your own
 // const userApiRoutes = require('./routes/users-api');
 // const widgetApiRoutes = require('./routes/widgets-api');
-// const usersRoutes = require('./routes/users');
-const loginRoutes = require('./server/routes/login');
+const auth = require('./server/lib/auth');
+const indexRoutes = require('./server/routes/api/index');
+const itemsRoutes = require('./server/routes/api/items');
+const loginRoutes = require('./server/routes/api/login');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use(loginRoutes);
+app.use('./server/routes/api/*', auth.verifyToken);
+app.use(indexRoutes);
+app.use(itemsRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page

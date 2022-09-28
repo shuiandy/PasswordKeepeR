@@ -31,23 +31,26 @@ const checkOrg = async (org, orgPass) => {
   });
 };
 const userRegister = async (username, password, email, org, orgPass) => {
-  const createOrgString = `INSERT INTO organizations (org_name, password, vault) VALUES($1, $2, ('{}'))`;
+  const createOrgString = 'INSERT INTO organizations (org_name, password) VALUES($1, $2)';
   const createUserString =
-    'INSERT INTO users (username, email, password, org_id) VALUES($1, $2, $3, (SELECT id FROM organizations WHERE org_name = $4))';
+    'INSERT INTO users (username, email, password, org_name, org_id) VALUES($1, $2, $3, $4, (SELECT id FROM organizations WHERE org_name = $5))';
+  const createOrgVaultTableString = `CREATE TABLE "${org}" (id SERIAL PRIMARY KEY NOT NULL, item VARCHAR(255) UNIQUE, vault JSONB)`;
   checkOrg(org, orgPass).then((result) => {
     if (result.status === 1) {
       return { success: false, info: 'Invalid organization password!' };
     } else if (result.status === 2) {
       return new Promise((resolve) => {
-        db.query(createUserString, [username, email, password, org]).then(() => {
+        db.query(createUserString, [username, email, password, org, org]).then(() => {
           return resolve({ success: true });
         });
       });
     } else {
       return new Promise((resolve) => {
-        db.query(createOrgString, [org, bcrypt.hashSync(orgPass, 10)]).then(() => {
-          db.query(createUserString, [username, email, password, org]).then(() => {
-            return resolve({ success: true });
+        db.query(createOrgVaultTableString).then(() => {
+          db.query(createOrgString, [org, bcrypt.hashSync(orgPass, 10)]).then(() => {
+            db.query(createUserString, [username, email, password, org, org]).then(() => {
+              return resolve({ success: true });
+            });
           });
         });
       });
@@ -62,16 +65,19 @@ const userLogin = (username, password) => {
       if (!result.rows || !bcrypt.compareSync(password, result.rows[0].password)) {
         return resolve({ user_id: null, success: false, info: 'Invalid Username or Password!' });
       } else {
-        const getUserVaultString =
-          'SELECT users.*, organizations.org_name, organizations.vault FROM users JOIN organizations ON org_id = organizations.id WHERE users.username = $1 GROUP BY users.id, organizations.id';
-        db.query(getUserVaultString, [username]).then((data) => {
-          return resolve({
+        const getUserInfoString =
+          'SELECT users.*, organizations.* FROM users JOIN organizations ON org_id = organizations.id WHERE users.username = $1 GROUP BY users.id, organizations.id';
+        db.query(getUserInfoString, [username]).then((data) => {
+          let result = {
             user_id: data.rows[0].id,
             success: true,
             info: 'Login Success',
-            org: data.rows[0].org_name,
+            org_name: data.rows[0].org_name,
             org_id: data.rows[0].org_id,
-            vault: data.rows[0].vault,
+          };
+          db.query(`SELECT * FROM ${result.org_name}`).then((data) => {
+            result.vault = data.rows[0];
+            return resolve(result);
           });
         });
       }
