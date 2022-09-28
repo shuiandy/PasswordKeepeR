@@ -15,8 +15,3 @@ CREATE TABLE users (
   org_name VARCHAR(255),
   org_id INTEGER REFERENCES organizations(id) ON DELETE CASCADE
 );
-CREATE TABLE "55" (
-  id SERIAL PRIMARY KEY NOT NULL,
-  item VARCHAR(255) UNIQUE,
-  vault JSONB
-);

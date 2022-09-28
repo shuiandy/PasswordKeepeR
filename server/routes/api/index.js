@@ -21,11 +21,11 @@ router.post('/signup', (req, res) => {
       return res.status(400).json({ status: 'failed', message: 'username is taken.' });
     }
     userRegister(username, password, email, orgName, orgPass).then((data) => {
-      if (success) {
+      // if (data.success) {
         res.redirect('/login');
-      } else {
-        return res.status(400).json({ status: 'failed', message: 'wrong org password!' });
-      }
+      // } else {
+        // return res.status(400).json({ status: 'failed', message: 'wrong org password!' });
+      // }
     });
   });
   // TODO: add session cookie
