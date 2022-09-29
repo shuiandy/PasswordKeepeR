@@ -1,63 +1,94 @@
-const passwordGenerator = (
-  passLength,
-  containsLowercase = true,
-  containsUppercase = true,
-  containsNumbers = true,
-  containsChars = true
-) => {
-  if (passLength < 4) {
-    return Error('Please enter minimum 4 characters!');
+
+
+$(document).ready(function () {
+
+  const passwordCharacters = {
+    uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    lowercase: "abcdefghijklmnopqrstuvwxyz",
+    numbers: "0123456789",
+    symbols: "!@#$%&*"
   }
 
-  const lowercase = 'abcdefghijklmnopqrstuvwxyz';
-  const upperCase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const numbers = '0123456789';
-  const specialChars = '!@#$%&*';
+  $('#generateButton').on("submit",function (event) {
+    event.preventDefault();
 
-  let password = '';
+    const passwordLength = $('input[name="passwordLength"]').val();
+    console.log(passwordLength);
 
-  const randomize = function (length) {
-    return Math.floor(Math.random() * length);
-  };
+    const passwordOptions = [];
+    $.each($('input[name="passwordCharacters"]:checked'), function () {
+      passwordOptions.push($(this).val());
+    });
+    console.log("passwordOptions:", passwordOptions);
 
-  let chars = '';
-  let remainingIntegers = passLength;
+    const alphabets = passwordOptions.map((key) => {
+      return passwordCharacters[key]
+    }).join("")
+    console.log("alphabets", alphabets);
 
-  if (containsLowercase) {
-    chars += lowercase;
-    password += lowercase[randomize(lowercase.length)];
-    remainingIntegers--;
-  }
+    const randomize = function (length) {
+      return Math.floor(Math.random() * length);
+    };
+    const remainderLength = passwordLength - passwordOptions.length;
+    console.log("remainderLength",remainderLength);
+    const remainingChars = Array.from({length:remainderLength}).map(() => {
+      return alphabets[randomize(alphabets.length)]
+    }).join("");
+    console.log("remainingChars", remainingChars);
+    const prefix = passwordOptions.map((key) => {
+      const alphabet = passwordCharacters[key]
+      return alphabet[randomize(alphabet.length)];
+    }).join("");
 
-  if (containsUppercase) {
-    chars += upperCase;
-    password += upperCase[randomize(upperCase.length)];
-    remainingIntegers--;
-  }
-  if (containsNumbers) {
-    chars += numbers;
-    password += numbers[randomize(numbers.length)];
-    remainingIntegers--;
-  }
-  if (containsChars) {
-    chars += specialChars;
-    password += specialChars[randomize(specialChars.length)];
-    remainingIntegers--;
-  }
+    console.log(prefix, "prefix");
+    const output = prefix + remainingChars;
+    console.log(output);
+    $('input[name="password"]').val(prefix + remainingChars);
 
-  for (let i = 0; i < remainingIntegers; i++) {
-    const randomNumber = Math.floor(Math.random() * chars.length);
-    password += chars.substring(randomNumber, randomNumber + 1);
-  }
+  });
 
-  return password;
-};
 
-const copyPassword = () => {
-  let copyText = document.getElementById('password');
-};
 
-const test = passwordGenerator(4, true, false, false, true);
-console.log(test);
 
-module.exports = { passwordGenerator, copyPassword };
+  // $("#copyButton").click(function() {
+  //   console.log("Password copied to clipboard");
+  //   alert("Password copied to clipboard");
+  //   const password_ele = document.getElementById("passwordText");
+  //   let copiedText = navigator.clipboard.writeText(password_ele.innerText);
+  //   console.log
+  //   console.log($('input[name="password"]').val());
+  // })
+
+  let copyToClipboardButton = document.getElementById('copyButton');
+
+  copyToClipboardButton.addEventListener('click', () => {
+      let textToCopy = document.getElementById('passwordText').innerText;
+      if(navigator.clipboard) {
+          navigator.clipboard.writeText(textToCopy).then(() => {
+              alert('Copied to clipboard')
+          })
+      } else {
+          console.log('Browser Not compatible')
+      }
+
+  })
+
+
+
+
+})
+
+
+
+
+
+
+// const copyPassword = () => {
+//   let copyText = document.getElementById('password');
+// };
+
+
+
+
+
+// module.exports = { passwordGenerator, copyPassword };
