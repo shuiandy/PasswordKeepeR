@@ -1,14 +1,12 @@
 'use strict';
 
 const express = require('express');
-const { checkLoginStatus, generateToken, getToken, cleanToken } = require('../../lib/auth');
-const { getVault } = require('../../db/queries/items');
+const { checkLoginStatus, generateToken } = require('../../lib/auth');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
-const { userRegister, checkUsername, userLogin } = require('../../db/queries/auth_db');
+const { userLogin } = require('../../db/queries/auth_db');
 router.use(cookieParser());
 router.use(
   cookieSession({
@@ -24,10 +22,11 @@ router.get('/login', (req, res) => {
   return checkLoginStatus(req) ? res.redirect('/index') : res.render('login');
 });
 
-router.post('/logout', (req, res) => {
-  cleanToken(req);
-  req.clearCookie();
-  return res.redirect('/');
+router.get('/logout', (req, res) => {
+  res.clearCookie('JWT_TOKEN');
+  res.clearCookie('session');
+  res.clearCookie('session.sig');
+  return res.redirect('/login');
 });
 
 router.post('/login', (req, res) => {

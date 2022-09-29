@@ -34,10 +34,12 @@ const userRegister = async (username, password, email, org, orgPass) => {
   const createOrgString = 'INSERT INTO organizations (org_name, password) VALUES($1, $2)';
   const createUserString =
     'INSERT INTO users (username, email, password, org_name, org_id) VALUES($1, $2, $3, $4, (SELECT id FROM organizations WHERE org_name = $5))';
-  const createOrgVaultTableString = `CREATE TABLE "${org}" (id SERIAL PRIMARY KEY NOT NULL, item VARCHAR(255) UNIQUE, category VARCHAR(255) UNIQUE, vault JSONB)`;
+  const createOrgVaultTableString = `CREATE TABLE "${org}" (id SERIAL PRIMARY KEY NOT NULL, item VARCHAR(255) UNIQUE, category VARCHAR(255), vault JSONB)`;
   checkOrg(org, orgPass).then((result) => {
+    // case 1
     if (result.status === 1) {
       return { success: false, info: 'Invalid organization password!' };
+    // case 2
     } else if (result.status === 2) {
       return new Promise((resolve) => {
         db.query(createUserString, [username, email, password, org, org]).then(() => {
@@ -45,6 +47,7 @@ const userRegister = async (username, password, email, org, orgPass) => {
         });
       });
     } else {
+      // case 3
       return new Promise((resolve) => {
         db.query(createOrgVaultTableString).then(() => {
           db.query(createOrgString, [org, bcrypt.hashSync(orgPass, 10)]).then(() => {

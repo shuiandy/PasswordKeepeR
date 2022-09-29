@@ -26,12 +26,9 @@ const verifyToken = (req, res, next) => {
   }
   next();
 };
-const cleanToken = (req) => {
-  req.clearCookie('JWT_TOKEN');
-};
+
 module.exports = {
   checkLoginStatus,
   generateToken,
-  cleanToken,
   verifyToken
 };

@@ -1,6 +1,6 @@
 // Client facing scripts here
 const timeConverter = (timestamp) => {
-  const a = new Date(timestamp * 1000);
+  const a = new Date(Number(timestamp));
   const months = [
     'Jan',
     'Feb',
@@ -24,3 +24,16 @@ const timeConverter = (timestamp) => {
   const time = `${date} ${month} ${year} ${hour}:${min}:${sec}`;
   return time;
 };
+
+const escapeChar = (str) => {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
+const copyPassword = () => {
+  let copyText = document.getElementById("item-pass");
+  console.log(copyText.innerText);
+  navigator.clipboard.writeText(copyText.innerText);
+  // alert("Copied the password!");
+}

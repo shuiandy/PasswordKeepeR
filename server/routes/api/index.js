@@ -1,7 +1,7 @@
 'use strict';
 const express = require('express');
 const { checkLoginStatus, verifyToken } = require('../../lib/auth');
-const { getVault } = require('../../db/queries/items');
+const { getVault } = require('../../db/queries/db_items');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
@@ -35,7 +35,7 @@ router.get('/index', (req, res) => {
     return res.redirect('/login');
   }
   getVault(req.userInfo.org_name).then((data) => {
-    const userData = { vault: data, org_name: req.userInfo.org_name };
+    const userData = { vault: data.vault, org_name: req.userInfo.org_name, count: data.vault.length };
     res.render('index', userData);
   });
 });
