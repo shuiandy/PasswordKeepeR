@@ -44,7 +44,7 @@ const renderCategory = (data) => {
   return `<li class="items">
               <button class="list-item" id="${data.item}" onclick="getItemDetail(this.id)">
                 <div class="item-icon">
-                  <i class="fa fa-lock fa-xl"></i>
+                  <img src="/resources/key.png" class="key-icon">
                 </div>
                 <div class="item-info">
                   <span class="title" name="item-name" value="${data.item}">

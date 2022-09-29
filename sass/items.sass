@@ -13,6 +13,8 @@
       list-style-type: none
       padding: 0
       margin: 0
+      .items .selected
+        background-color: #EAEAEE
       .list-item
         height: 60px
         padding: 4px 10px 0 20px
@@ -27,13 +29,15 @@
         border-bottom: 1px solid #e4e6e7
         display: flex
         flex-direction: row
+
         .item-icon
           height: 100%
           justify-content: center
           align-items: center
-          i
+          .key-icon
             vertical-align: middle
-            padding-top: 20px
+            height: 45px
+            padding-top: 5px
             text-align: center
         .item-info
           padding-left: 10px
@@ -77,17 +81,69 @@
     #display-item
       justify-content: center
       height: 100%
+      align-items: center
       bottom: 35px
       margin: auto
       header
         margin: 0px auto
+        width: 400px
+        padding-top: 80px
+        display: flex
+        flex-direction: row
+        align-items: center
         justify-content: center
+        padding-bottom: 50px
+        .key-icon-item
+          height: 120px
+          width: 150px
+        #detail-item-name
+          text-align: center
+          font-size: 60px
+          font-family: 'Rakkas', cursive
       .table
         width: 80%
         border-radius: 5px
         float: none
         margin: 0px auto
+        margin-bottom: 40px
         justify-content: center
+        tr
+          height: 60px
+        tbody
+          margin: 0
+          padding: 0
+          border: 0
+          font: inherit
+          vertical-align: baseline
+        td
+          width: 50%
+          text-align: left
+          span
+            font-size: 20px
+          .value-password
+            border: none
+            font-size: 30px
+            background-color: transparent
+            #toggleShow
+              vertical-align: center
+              padding-top: 20px
+              border: none
+              background-color: #efefef
+              height: 20px
+            #copyButton
+              vertical-align: center
+              border: none
+              height: 20px
+        .title
+          text-align: center
+          font-size: 20px
+        .first-col
+          text-align: center
+          font-weight: bold
+          padding-right: 1rem
+          color: #707070
+          width: 150px
+          position: relative
 
   #item-bar
     position: absolute
@@ -103,20 +159,6 @@
       display: block
       left: 5px
       bottom: 5px
-
-    tbody
-      margin: 0
-      padding: 0
-      border: 0
-      font: inherit
-      vertical-align: baseline
-
-    .first-col
-      text-align: right
-      padding-right: 1rem
-      color: #707070
-      width: 150px
-      position: relative
 
     .value-input
       // outline: none;
