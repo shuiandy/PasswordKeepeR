@@ -33,6 +33,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/passwordGenerator.js"></script>
+
 </head>
 
 <body>
@@ -149,11 +151,11 @@
                     <span class="section-name">password</span>
                   </td>
                   <td class="value concealed show-password-generator">
+                   <div id="passwordDiv">
                     <input type="text" class="value-input" spellcheck="false" autocapitalize="none" autocorrect="off"
-                      name="password" value>
-                    <button class="generate-password">
-
-                    </button>
+                      name="password" id="passwordText" value>
+                    <button id="copyButton"></button>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -183,6 +185,36 @@
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>
+
+          <div class="pw-container">
+            <div class="pw-body">
+              <form id="generateButton" >
+              <div class="form-control">
+                <label for="length">Password Length</label>
+                <input id="length" value="1" type="number" min="4" max="12" name="passwordLength">
+              </div>
+              <div class="form-control">
+                <label for="upper">Contain Uppercase Letters</label>
+                <input id="upper" type="checkbox" value="uppercase" name="passwordCharacters">
+              </div>
+              <div class="form-control">
+                <label for="lower">Contain Lowercase Letters</label>
+                <input id="lower" type="checkbox"  value="lowercase" name="passwordCharacters">
+              </div>
+              <div class="form-control">
+                <label for="number">Contain Numbers </label>
+                <input id="number" type="checkbox" value="numbers" name="passwordCharacters">
+              </div>
+              <div class="form-control">
+                <label for="characters">Contain Symbols</label>
+                <input id="characters" type="checkbox" value="symbols" name="passwordCharacters">
+              </div>
+              <button type="submit" id="generate">Generate Password</button>
+              </form>
+            </div>
+          </div>
+
+
       </div>
     </section>
   </div>
