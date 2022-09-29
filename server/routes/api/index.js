@@ -21,21 +21,20 @@ router.post('/signup', (req, res) => {
       return res.status(400).json({ status: 'failed', message: 'username is taken.' });
     }
     userRegister(username, password, email, orgName, orgPass).then((data) => {
-      // if (data.success) {
-        res.redirect('/login');
-      // } else {
-        // return res.status(400).json({ status: 'failed', message: 'wrong org password!' });
-      // }
+      res.redirect('/login');
     });
   });
-  // TODO: add session cookie
 });
 router.get('/index', (req, res) => {
   if (!checkLoginStatus(req)) {
     return res.redirect('/login');
   }
   getVault(req.userInfo.org_name).then((data) => {
-    const userData = { vault: data.vault, org_name: req.userInfo.org_name, count: data.vault.length };
+    const userData = {
+      vault: data.vault,
+      org_name: req.userInfo.org_name,
+      count: data.vault.length,
+    };
     res.render('index', userData);
   });
 });

@@ -1,8 +1,8 @@
 $(document).ready(function () {
   $('.pass-gen').click(function (e) {
     e.preventDefault();
-     $('.pw-container').slideToggle();
-  })
+    $('.pw-container').slideToggle();
+  });
   const passwordCharacters = {
     uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     lowercase: 'abcdefghijklmnopqrstuvwxyz',
