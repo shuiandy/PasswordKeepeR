@@ -58,6 +58,9 @@ const getItemDetail = (itemName, vaultName) => {
   return new Promise((resolve, reject) => {
     db.query(queryString, [itemName])
       .then((vault) => {
+        if (vault.rowCount === 0) {
+          return reject({ success: false })
+        }
         return resolve({ success: true, vault: vault.rows[0] });
       })
       .catch((err) => {

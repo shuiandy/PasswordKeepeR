@@ -16,19 +16,30 @@ const {
   getItemDetail,
   getCategory,
 } = require('../../db/queries/db_items');
+
 router.post('/api/new-item', (req, res) => {
   if (!checkLoginStatus(req)) {
     return res.send('Please login first!');
   }
-
   const itemName = req.body.itemName;
+  const org_id = req.userInfo.org_name;
+
+
+  getItemDetail(itemName, org_id).then((item) => {
+    return res.json({
+      hasDuplicates: true
+    });
+  }).catch((item) => {
+
+  })
+
   const username = req.body.username;
   const password = req.body.password;
   const website = req.body.website;
   const category = req.body.category;
   const last_modified = Date.now();
   const create_time = Date.now();
-  const org_id = req.userInfo.org_name;
+
   insertNewItem(
     itemName,
     username,
@@ -41,7 +52,9 @@ router.post('/api/new-item', (req, res) => {
   ).then((data) => {
     getVault(org_id).then((vault) => {
       if (vault) {
-        res.redirect('/index');
+        res.json({
+          redirect: true
+        })
       }
     });
   });

@@ -13,7 +13,7 @@ $(document).ready(function () {
   $('#generateButton').submit(function (event) {
     event.preventDefault();
     event.stopPropagation();
-    const isUpper
+    // const isUpper/
 
     const passwordLength = $('input[name="passwordLength"]').val();
 
