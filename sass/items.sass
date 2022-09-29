@@ -57,9 +57,14 @@
 
   #item-details
     position: absolute
+    background-image: url("/resources/logo_fade.png")
+    background-repeat: no-repeat
+    background-position: center
+    background-color: #e4e6e7
     top: 0
     justify-content: center
     align-items: center
+    vertical-align: center
     bottom: 0
     right: 0
     overflow: auto
@@ -69,7 +74,21 @@
     @media only screen and(min-width: 1050px)
       width: calc(100% - 535px)
 
-    
+    #display-item
+      justify-content: center
+      height: 100%
+      bottom: 35px
+      margin: auto
+      header
+        margin: 0px auto
+        justify-content: center
+      .table
+        width: 80%
+        border-radius: 5px
+        float: none
+        margin: 0px auto
+        justify-content: center
+
   #item-bar
     position: absolute
     bottom: 0

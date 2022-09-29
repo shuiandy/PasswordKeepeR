@@ -19,7 +19,7 @@ const renderItem = (data) => {
     <i class="fa fa-lock fa-xl"></i>
     <div class="detail-item-name" id="detail-item-name">${data.item}</div>
   </header>
-  <table class="section-username-password">
+  <table class="section-username-password table table-bordered">
     <tbody>
       <tr class="field string">
         <td class="title first-col">
@@ -40,7 +40,7 @@ const renderItem = (data) => {
       </tr>
     </tbody>
   </table>
-  <table class="section-websites">
+  <table class="section-websites table table-bordered">
     <tbody>
       <tr class="field URL new-field">
         <td class="title first-col">

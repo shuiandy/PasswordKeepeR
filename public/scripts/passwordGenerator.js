@@ -1,4 +1,8 @@
 $(document).ready(function () {
+  $('.pass-gen').click(function (e) {
+    e.preventDefault();
+     $('.pw-container').slideToggle();
+  })
   const passwordCharacters = {
     uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     lowercase: 'abcdefghijklmnopqrstuvwxyz',
@@ -9,34 +13,30 @@ $(document).ready(function () {
   $('#generateButton').submit(function (event) {
     event.preventDefault();
     event.stopPropagation();
+    const isUpper
 
     const passwordLength = $('input[name="passwordLength"]').val();
-    console.log(passwordLength);
 
     const passwordOptions = [];
     $.each($('input[name="passwordCharacters"]:checked'), function () {
       passwordOptions.push($(this).val());
     });
-    console.log('passwordOptions:', passwordOptions);
 
     const alphabets = passwordOptions
       .map((key) => {
         return passwordCharacters[key];
       })
       .join('');
-    console.log('alphabets', alphabets);
 
     const randomize = function (length) {
       return Math.floor(Math.random() * length);
     };
     const remainderLength = passwordLength - passwordOptions.length;
-    console.log('remainderLength', remainderLength);
     const remainingChars = Array.from({ length: remainderLength })
       .map(() => {
         return alphabets[randomize(alphabets.length)];
       })
       .join('');
-    console.log('remainingChars', remainingChars);
     const prefix = passwordOptions
       .map((key) => {
         const alphabet = passwordCharacters[key];
@@ -44,9 +44,7 @@ $(document).ready(function () {
       })
       .join('');
 
-    console.log(prefix, 'prefix');
     const output = prefix + remainingChars;
-    console.log(output);
     $('input[name="password"]').val(prefix + remainingChars);
   });
 });
