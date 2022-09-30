@@ -1,11 +1,11 @@
 $(document).ready(function () {
-  $('.save-item').click(function (event) {
-    event.preventDefault();
+  $('#inputItemName').on('submit', function (event) {
+    // event.preventDefault();
     const itemName = $('#inputItemName').val().trim();
     $.ajax({
       type: 'post',
       url: '/api/new-item',
-      data: { itemName },
+      data: {  data},
     }).done(function (data) {
       if (data.hasDuplicates) {
         alert('Do not duplicate items!');

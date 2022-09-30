@@ -40,7 +40,7 @@ const userRegister = async (username, password, email, org, orgPass) => {
     // case 1
     if (result.status === 1) {
       return { success: false, info: 'Invalid organization password!' };
-    // case 2
+      // case 2
     } else if (result.status === 2) {
       return new Promise((resolve) => {
         db.query(createUserString, [username, email, password, org_name, org]).then(() => {
@@ -51,6 +51,7 @@ const userRegister = async (username, password, email, org, orgPass) => {
       // case 3
       return new Promise((resolve) => {
         db.query(createOrgVaultTableString).then(() => {
+
           db.query(createOrgString, [org, bcrypt.hashSync(orgPass, 10)]).then(() => {
             db.query(createUserString, [username, email, password, org_name, org]).then(() => {
               return resolve({ success: true });
@@ -90,4 +91,16 @@ const userLogin = (username, password) => {
     console.log('userLoginError', err);
   });
 };
-module.exports = { checkUsername, checkOrg, userRegister, userLogin };
+const resetPassword = (username, newPassword) => {
+  const queryString = 'UPDATE users SET password = $1 WHERE username = $2';
+  return new Promise((resolve, reject) => {
+    db.query(queryString, [bcrypt.hashSync(newPassword, 10), username])
+      .then((data) => {
+        return resolve({ success: true });
+      })
+      .catch((err) => {
+        return reject({ success: false, err: err });
+      });
+  });
+};
+module.exports = { checkUsername, checkOrg, userRegister, userLogin, resetPassword };

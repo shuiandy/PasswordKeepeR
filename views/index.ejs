@@ -173,29 +173,27 @@
         <div class="modal-header">
           <h5>Change Password</h5>
         </div>
-        <div class="modal-body">
+        < class="modal-body">
           <form action="/api/change-pass" class="form-card" method="POST">
             <div class="md-form mb-3">
-              <input type="password" id="current-pass" class="form-control validate">
+              <input type="password" id="current-pass" class="form-control validate" name="password">
               <label data-error="wrong" data-success="right" for="current-pass">Current Password</label>
             </div>
             <div class="md-form mb-3">
-              <input type="password" id="new-pass" class="form-control validate">
+              <input type="password" id="new-pass" class="form-control validate" name="newPassword">
               <label data-error="wrong" data-success="right" for="form2">New Password</label>
             </div>
             <div class="md-form mb-3">
               <input type="password" id="new-pass-repat" class="form-control validate">
               <label data-error="wrong" data-success="right" for="form2">Repeat New Password</label>
             </div>
-        </div>
-        <div class="modal-footer justify-content-center">
-          <a type="button" class="btn btn-outline-warning waves-effect" type="submit">Change Password <i
-              class="fas fa-paper-plane-o ml-1"></i></a>
-        </div>
-        </form>
+            <div class="modal-footer justify-content-center">
+              <a type="button" class="btn btn-outline-warning waves-effect" type="submit">Change Password <i
+                  class="fas fa-paper-plane-o ml-1"></i></a>
+            </div>
+          </form>
       </div>
     </div>
-  </div>
   </div>
   <!-- Create New Item Modal -->
   <div id="new-item" class="modal fade" tabindex="-1" aria-labelledby="new-item-label" aria-hidden="true">
@@ -207,7 +205,7 @@
         <div class="modal-body">
           <div class="row">
 
-            <form action="/api/new-item" class="form-card requires-validation" novalidate method="POST">
+            <form action="/api/new-item" class="form-card" novalidate method="POST">
               <div class="col-md-12">
                 <input type="text" id="inputItemName" class="form-control" name="itemName" placeholder="item name">
                 <div class="invalid-feedback">item name field cannot be blank!</div>
@@ -229,25 +227,25 @@
                 <div class="pw-container">
                   <div class="pw-body">
                     <!-- <div id="generateButton"> -->
-                      <!-- <div class="form-control"> -->
-                      <label for="length">Password Length</label>
-                      <input id="length" value="1" type="number" min="4" max="12" name="passwordLength">
-                    </div>
-                    <div class="custom-control custom-switch">
-                      <label for="upper">Uppercase</label>
-                      <input id="upper" class="custom-control-input" type="checkbox" value="uppercase"
-                        name="passwordCharacters">
-                      <label for="lower">Lowercase</label>
-                      <input id="lower" class="custom-control-input" type="checkbox" value="lowercase"
-                        name="passwordCharacters">
-                    </div>
-                    <div class="custom-control custom-switch">
-                      <label for="number">Numbers </label>
-                      <input id="number" class="custom-control-input" type="checkbox" value="numbers"
-                        name="passwordCharacters">
-                      <label for="characters">Symbols</label>
-                      <input id="characters" class="custom-control-input" type="checkbox" value="symbols"
-                        name="passwordCharacters">
+                    <!-- <div class="form-control"> -->
+                    <label for="length">Password Length</label>
+                    <input id="length" value="1" type="number" min="4" max="12" name="passwordLength">
+                  </div>
+                  <div class="custom-control custom-switch">
+                    <label for="upper">Uppercase</label>
+                    <input id="upper" class="custom-control-input" type="checkbox" value="uppercase"
+                      name="passwordCharacters">
+                    <label for="lower">Lowercase</label>
+                    <input id="lower" class="custom-control-input" type="checkbox" value="lowercase"
+                      name="passwordCharacters">
+                  </div>
+                  <div class="custom-control custom-switch">
+                    <label for="number">Numbers </label>
+                    <input id="number" class="custom-control-input" type="checkbox" value="numbers"
+                      name="passwordCharacters">
+                    <label for="characters">Symbols</label>
+                    <input id="characters" class="custom-control-input" type="checkbox" value="symbols"
+                      name="passwordCharacters">
                     <!-- </div> -->
                     <!-- <button type="submit" id="generateButton">Generate</button> -->
                     <!-- </form> -->
@@ -255,6 +253,7 @@
 
                 </div>
               </div>
+
               <div class="col-md-12">
                 <input type="text" name="website" id="inputWebsite" class="form-control" placeholder="website"
                   autocomplete="off" required>

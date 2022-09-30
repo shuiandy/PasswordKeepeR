@@ -4,13 +4,13 @@ const getCategory = (category) => {
       type: 'get',
       url: '/api/category/' + category,
     }).done(function (data) {
-    //   console.log(data);
-    //   console.log(data.vault.length)
-    //   if (data.vault.length === 0) {
-    //     return $('#no-item').html(`<div class="no-item">
-    // <h1>Your vault has nothing, why not adding one?</h1>
-    // </div>`);
-    //   }
+      //   console.log(data);
+      //   console.log(data.vault.length)
+      //   if (data.vault.length === 0) {
+      //     return $('#no-item').html(`<div class="no-item">
+      // <h1>Your vault has nothing, why not adding one?</h1>
+      // </div>`);
+      //   }
       let result = '';
       Object.values(data.vault).forEach((content) => {
         const items = renderCategory(content);
@@ -48,13 +48,13 @@ const renderCategory = (data) => {
                 </div>
                 <div class="item-info">
                   <span class="title" name="item-name" value="${data.item}">
-                    <h3>
-                      ${data.item}
-                    </h3>
+                  <h3>
+                  ${data.item}
+                  </h3>
                   </span>
                   <span class="title-username">
                     <h4>
-                      ${data.vault.username}
+                    ${data.vault.username}
                     </h4>
                   </span>
                 </div>
