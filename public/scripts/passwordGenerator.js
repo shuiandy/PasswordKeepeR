@@ -1,50 +1,27 @@
-$(document).ready(function () {
-  $('.pass-gen').click(function (e) {
-    e.preventDefault();
-    $('.pw-container').slideToggle();
-  });
-  const passwordCharacters = {
-    uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-    lowercase: 'abcdefghijklmnopqrstuvwxyz',
-    numbers: '0123456789',
-    symbols: '!@#$%&*',
-  };
+const passwordGen = () => {
+  const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+  const numbers = '0123456789';
+  const symbols = '!@#$%&*';
+  const isUpper = document.getElementById('upper').checked;
+  const isLower = document.getElementById('lower').checked;
+  const isNum = document.getElementById('number').checked;
+  const isSymbol = document.getElementById('characters').checked;
+  const passLen = document.getElementById('length').value;
 
-  $('#generateButton').submit(function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    // const isUpper/
-
-    const passwordLength = $('input[name="passwordLength"]').val();
-
-    const passwordOptions = [];
-    $.each($('input[name="passwordCharacters"]:checked'), function () {
-      passwordOptions.push($(this).val());
-    });
-
-    const alphabets = passwordOptions
-      .map((key) => {
-        return passwordCharacters[key];
-      })
-      .join('');
-
-    const randomize = function (length) {
-      return Math.floor(Math.random() * length);
-    };
-    const remainderLength = passwordLength - passwordOptions.length;
-    const remainingChars = Array.from({ length: remainderLength })
-      .map(() => {
-        return alphabets[randomize(alphabets.length)];
-      })
-      .join('');
-    const prefix = passwordOptions
-      .map((key) => {
-        const alphabet = passwordCharacters[key];
-        return alphabet[randomize(alphabet.length)];
-      })
-      .join('');
-
-    const output = prefix + remainingChars;
-    $('input[name="password"]').val(prefix + remainingChars);
-  });
-});
+  const passChars = [
+    isLower ? lowercase : [],
+    isUpper ? uppercase : [],
+    isNum ? numbers : [],
+    isSymbol ? symbols : [],
+  ].join('');
+  console.log(passChars);
+  let result = '';
+  for (let i = 0; i < passLen; i += 1) {
+    result += passChars.charAt(Math.floor(Math.random() * passChars.length));
+  }
+  document.getElementById('inputPassword').value = result;
+  navigator.clipboard.writeText(result);
+  document.getElementById('inputPassword').type = 'text';
+  return result;
+};

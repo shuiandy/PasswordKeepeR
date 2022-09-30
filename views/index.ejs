@@ -38,7 +38,6 @@
   <script src="/scripts/displayItem.js"></script>
   <script src="/scripts/handler.js"></script>
   <script src="/scripts/getCategory.js"></script>
-  <script src="/scripts/inputValidation.js"></script>
   <script src="/scripts/passwordGenerator.js"></script>
 </head>
 
@@ -226,29 +225,28 @@
               <div class="col-md-12">
                 <div class="pw-container">
                   <div class="pw-body">
-                    <!-- <div id="generateButton"> -->
-                    <!-- <div class="form-control"> -->
                     <label for="length">Password Length</label>
-                    <input id="length" value="1" type="number" min="4" max="12" name="passwordLength">
+                    <input id="length" value="8" type="number" min="7" max="18" name="passwordLength">
                   </div>
-                  <div class="custom-control custom-switch">
+                  <div class="row">
                     <label for="upper">Uppercase</label>
-                    <input id="upper" class="custom-control-input" type="checkbox" value="uppercase"
+                    <input id="upper" class="" type="checkbox" value="uppercase"
                       name="passwordCharacters">
                     <label for="lower">Lowercase</label>
-                    <input id="lower" class="custom-control-input" type="checkbox" value="lowercase"
+                    <input id="lower" class="" type="checkbox" value="lowercase"
                       name="passwordCharacters">
                   </div>
-                  <div class="custom-control custom-switch">
+                  <div class="row">
                     <label for="number">Numbers </label>
-                    <input id="number" class="custom-control-input" type="checkbox" value="numbers"
+                    <input id="number" class="" type="checkbox" value="numbers"
                       name="passwordCharacters">
                     <label for="characters">Symbols</label>
-                    <input id="characters" class="custom-control-input" type="checkbox" value="symbols"
+                    <input id="characters" class="" type="checkbox" value="symbols"
                       name="passwordCharacters">
-                    <!-- </div> -->
-                    <!-- <button type="submit" id="generateButton">Generate</button> -->
-                    <!-- </form> -->
+                    <div class="row">
+                      <button type="button" class="btn btn-outline-primary" onclick="passwordGen()">Generate</button>
+                    </div>
+
                   </div>
 
                 </div>

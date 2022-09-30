@@ -33,7 +33,6 @@ const escapeChar = (str) => {
 
 const copyPassword = () => {
   let copyText = $('#item-pass').val();
-  console.log(copyText);
   navigator.clipboard.writeText(copyText);
 };
 $(document).ready(function () {
@@ -42,23 +41,10 @@ $(document).ready(function () {
     $(this).addClass('selected');
   });
 
-  // $('#toggleShow').click(function (event) {
-  //   event.preventDefault();
-  //   console.log("mememe!");
-  //   if ($('#show_hide_password input').attr('type') == 'text') {
-  //     $('#show_hide_password input').attr('type', 'password');
-  //     $('#show_hide_password i').addClass('fa-eye-slash');
-  //     $('#show_hide_password i').removeClass('fa-eye');
-  //   } else if ($('#show_hide_password input').attr('type') == 'password') {
-  //     $('#show_hide_password input').attr('type', 'text');
-  //     $('#show_hide_password i').removeClass('fa-eye-slash');
-  //     $('#show_hide_password i').addClass('fa-eye');
-  //   }
-  // });
 });
 $(document).ready(function () {
   $('#show_hide_password #toggleShow').click(function (event) {
-    console.log("mememe!");
+    console.log('mememe!');
     event.preventDefault();
     if ($('.field #show_hide_password input').attr('type') == 'text') {
       $('.field #show_hide_password input').attr('type', 'password');
@@ -66,8 +52,8 @@ $(document).ready(function () {
       $('#show_hide_password #toggleShow').removeClass('fa-eye');
     } else if ($('#show_hide_password input').attr('type') == 'password') {
       $('#show_hide_password input').attr('type', 'text');
-      $('#show_hide_password #toggleShowi').removeClass('fa-eye-slash');
-      $('#show_hide_password #toggleShowi').addClass('fa-eye');
+      $('#show_hide_password #toggleShow').removeClass('fa-eye-slash');
+      $('#show_hide_password #toggleShow').addClass('fa-eye');
     }
-  }); 
+  });
 });
