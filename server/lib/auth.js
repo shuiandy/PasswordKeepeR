@@ -9,7 +9,7 @@ const checkLoginStatus = (req) => {
 };
 
 const generateToken = (data) => {
-  const payload = { user_id: data.user_id, org_name: data.org_name, org_id: data.org_id };
+  const payload = { username: data.username, user_id: data.user_id, org_name: data.org_name, org_id: data.org_id };
   const token = jwt.sign(payload, secret, { expiresIn: '1day' });
   return token;
 };

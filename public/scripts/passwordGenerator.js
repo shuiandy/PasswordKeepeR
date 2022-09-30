@@ -20,8 +20,10 @@ const passwordGen = () => {
   for (let i = 0; i < passLen; i += 1) {
     result += passChars.charAt(Math.floor(Math.random() * passChars.length));
   }
-  document.getElementById('inputPassword').value = result;
+  document.getElementById('createPassword').value = result;
+  document.getElementById('createPassword').value = result;
   navigator.clipboard.writeText(result);
-  document.getElementById('inputPassword').type = 'text';
+  document.getElementById('createPassword').type = 'text';
+  document.getElementById('createPassword').type = 'text';
   return result;
 };

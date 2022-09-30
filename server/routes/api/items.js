@@ -21,21 +21,13 @@ router.post('/api/new-item', (req, res) => {
   if (!checkLoginStatus(req)) {
     return res.send('Please login first!');
   }
+
   const itemName = req.body.itemName;
-  const org_id = req.userInfo.org_name;
-
-  getItemDetail(itemName, org_id)
-    .then((item) => {
-      return res.json({
-        hasDuplicates: true,
-      });
-    })
-    .catch((item) => {});
-
   const username = req.body.username;
   const password = req.body.password;
   const website = req.body.website;
   const category = req.body.category;
+  const org_name = req.userInfo.org_name;
   const last_modified = Date.now();
   const create_time = Date.now();
 
@@ -47,15 +39,11 @@ router.post('/api/new-item', (req, res) => {
     category,
     last_modified,
     create_time,
-    org_id
+    org_name
   ).then((data) => {
-    getVault(org_id).then((vault) => {
-      if (vault) {
-        res.json({
-          redirect: true,
-        });
-      }
-    });
+    if (data.rowCount === 1) {
+      return res.redirect('/index');
+    }
   });
 });
 router.get('/api/item/:name', (req, res) => {
@@ -68,17 +56,18 @@ router.get('/api/item/:name', (req, res) => {
     }
   });
 });
-router.put('/api/item/:name', (req, res) => {
+router.post('/api/item', (req, res) => {
   if (!checkLoginStatus(req)) {
     return res.send('Please login first!');
   }
-  const itemName = req.body.itemName;
+  const itemName = req.params.itemName;
   const username = req.body.username;
   const password = req.body.password;
   const website = req.body.website;
   const category = req.body.category;
+  const create_time = req.body.createTime;
   const last_modified = Date.now();
-  const create_time = req.body.create_time;
+  // const create_time = req.body.create_time;
   const org_id = req.userInfo.org_name;
   editItem(
     itemName,
@@ -90,11 +79,7 @@ router.put('/api/item/:name', (req, res) => {
     create_time,
     org_id
   ).then((data) => {
-    getItemDetail(itemName, org_id).then((data) => {
-      if (data.success) {
-        return res.send(data.vault);
-      }
-    });
+      return res.redirect('/index');
   });
 });
 router.delete('/api/item/:name', (req, res) => {

@@ -1,6 +1,5 @@
 const db = require('../connection');
 const crypto = require('crypto');
-const { rejects } = require('assert');
 
 // TODO: user's JSON vault should encrypted by a master key
 // TODO: when user logged in to the account, vault should be decrypted by the master key
@@ -14,7 +13,8 @@ const insertNewItem = (
   create_time,
   vault_name
 ) => {
-  const queryString = `INSERT INTO ${vault_name} (item, category, vault) VALUES($1, $2, $3)`;
+  const vault = vault_name.toString();
+  const queryString = `INSERT INTO ${vault} (item, category, vault) VALUES($1, $2, $3)`;
   const itemVault = `{"item_name": "${itemName}", "username": "${username}", "password": "${password}", "website": "${website}", "category": "${category}" , "last_modified": "${last_modified}", "create_time": "${create_time}"}`;
   return db.query(queryString, [itemName, category, itemVault]);
 };

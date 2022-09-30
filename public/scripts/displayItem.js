@@ -23,6 +23,9 @@ const renderItem = (data) => {
   <header class="row">
     <img src="/resources/paimon.png" class="key-icon-item">
     <div class="detail-item-name" id="detail-item-name">${data.item}</div>
+    <div class="alert alert-success" id="clip-alert" style="display:none" role="alert">
+  Password copied to clipboard!
+</div>
   </header>
   <table class="section-username-password table table-striped table-primary">
     <tbody>
@@ -31,7 +34,9 @@ const renderItem = (data) => {
           <span class="section-name">username</span>
         </td>
         <td class="value string align-middle">
-          <span class="value-username">${escapeChar(data.vault.username)}</input>
+          <span class="value-username" id="detail-username">${escapeChar(
+            data.vault.username
+          )}</input>
         </td>
       </tr>
       <tr class="field concealed">
@@ -43,7 +48,7 @@ const renderItem = (data) => {
           <input class="value-password align-middle" id="item-pass" type="password" size="20" value="${escapeChar(
             data.vault.password
           )}">
-        <button class="fa fa-eye-slash fa-xl" id="toggleShow"></button>
+
         <button class="fa fa-copy fa-xl" id="copyButton" onclick="copyPassword()"></button>
       </div>
         </td>
@@ -57,7 +62,7 @@ const renderItem = (data) => {
           <span class="section-name">website</span>
         </td>
         <td class="value URL align-middle">
-          <a class="display-website" href="${escapeChar(data.vault.website)}">
+          <a class="display-website" id="website-address" href="${escapeChar(data.vault.website)}">
             <span>${escapeChar(data.vault.website)}</span>
           </a>
         </td>
@@ -67,7 +72,9 @@ const renderItem = (data) => {
           <span class="section-name">category</span>
         </td>
         <td class="category align-middle">
-          <span class="display-category">${escapeChar(data.vault.category)}</span>
+          <span class="display-category" id="detail-category">${escapeChar(
+            data.vault.category
+          )}</span>
         </td>
       </tr>
     </tbody>
@@ -88,6 +95,7 @@ const renderItem = (data) => {
         </td>
         <td class="created align-middle">
           <span class="display-created">${createdTime}</span>
+          <span class="hidden-created" style="display: none">${data.vault.create_time}</span>
         </td>
       </tr>
     </tbody>
@@ -95,8 +103,8 @@ const renderItem = (data) => {
 </div>
 <div id="item-bar">
   <div class="edit-bar">
-    <a href="javascript:void(0)" class="edit-item btn btn-outline-primary" role="button" data-bs-toggle="modal" data-bs-target="#modalEditItem">Edit</a>
-    <a href="javascript:void(0)" class="edit-item btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmDelete" role="button">Delete</a>
+    <button class="edit-item btn btn-outline-primary" role="button" id="toggle-edit-item" data-bs-toggle="modal" data-bs-target="#modalEditItem">Edit</button>
+    <button class="edit-item btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modalConfirmDelete" role="button">Delete</button>
     </div>
 </div>`;
 };
