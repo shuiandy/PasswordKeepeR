@@ -4,11 +4,12 @@ public/styles
 *.sqlite3
 
 .vscode/*
-.vscode
+.vscode/
 .env
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
+PasswordKeepeR.code-workspace
 !.vscode/extensions.json
 !.vscode/*.code-snippets
 
